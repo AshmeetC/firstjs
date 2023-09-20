@@ -11,6 +11,10 @@ document.getElementById("input").addEventListener("keyup", (event) => {
     document.getElementById("input").value = ""
     console.log(messageText)
     
+    document.getElementById("input2").addEventListener("keyup", (event) => {
+        if (event.key !== "Enter") {
+            return;
+        }
     let status = document.getElementById("input2").value.replace("'", "’")
     document.getElementById("input2").value = ""
     console.log(messageText)
@@ -51,7 +55,7 @@ document.getElementById("input").addEventListener("keyup", (event) => {
         pty.innerText = ptyi
     }
     updateLabel()
-    
+    })
 });
 
 function updateLabel() {
