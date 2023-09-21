@@ -23,7 +23,7 @@ document.getElementById("input").addEventListener("keyup", (event) => {
         let r2 = 0
         let ptyi = initial
         let pty = document.getElementById("PTY")
-        if(status.equals("married") || status.equals("Married")){
+        if(status=="married" || status=="Married"){
             if(initial<=22000){
                 ptyi = ptyi * .9
             }
@@ -51,13 +51,42 @@ document.getElementById("input").addEventListener("keyup", (event) => {
                 rate = .37
                 ptyi = ptyi - (2200 + (ptyi-22000)*rate)
             }
-            pty.innerText = "Post-Tax Yearly: " + ptyi + " dollars per month"
+            pty.innerText = "Post-Tax: " + ptyi + " dollars per year"
+        }else if(status=="Single" || status=="single"){
+            if(initial<=11000){
+                ptyi = ptyi * .9
+            }
+            else if(initial>11000 && initial<=44725 ){
+                rate = .12
+                ptyi = ptyi - (1100 + (ptyi-11000)*rate)
+            }
+            else if(initial>44725 && initial<=95375 ){
+                rate = .22
+                ptyi = ptyi - (5174 + (ptyi-44725)*rate)
+            }
+            else if(initial>95375 && initial<=182100 ){
+                rate = .24
+                ptyi = ptyi - (16290 + (ptyi-95375)*rate)
+            }
+            else if(initial>182100 && initial<=231250 ){
+                rate = .32
+                ptyi = ptyi - (37104 + (ptyi-182100)*rate)
+            }
+            else if(initial>231250 && initial<=578125 ){
+                rate = .35
+                ptyi = ptyi - (52832 + (ptyi-231250)*rate)
+            }
+            else if(initial>578125){
+                rate = .37
+                ptyi = ptyi - (174238.25 + (ptyi-578125)*rate)
+            }
+            pty.innerText = "Post-Tax: " + ptyi + " dollars per year"
         }
-        updateLabel()
+        updateLabel(ptyi)
     });
 });
 
-function updateLabel() {
+function updateLabel(x) {
     let ptm = document.getElementById("PTM")
-    ptm.innerText = "Post-Tax Monthly: " + ptyi/12 + " dollars per month"
+    ptm.innerText = "Post-Tax: " + ((x/12).toFixed(2)) + " dollars per month"
 }
