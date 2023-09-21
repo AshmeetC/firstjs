@@ -51,8 +51,7 @@ document.getElementById("input").addEventListener("keyup", (event) => {
                 rate = .37
                 ptyi = ptyi - (2200 + (ptyi-22000)*rate)
             }
-            pty.classList = []
-            pty.innerText = ptyi
+            pty.innerText = "Post-Tax Yearly: " + ptyi + " dollars per month"
         }
         updateLabel()
     });
